@@ -3,15 +3,22 @@
 #include <stdlib.h>
 #include "libft.h"
 
-void handle_signal(int sig)
+static void handle_sigusr1(int sig)
 {
-    printf("Caught signal %s\n", ft_itoa(sig));
-    exit(0);
+    (void)sig;
+    ft_putstr_fd("SIGUSR1 received\n", 1);
+}
+
+static void handle_sigusr2(int sig)
+{
+    (void)sig;
+    ft_putstr_fd("SIGUSR2 received\n", 1);
 }
 
 int main(void)
 {
-    signal(SIGINT, handle_signal);
+    signal(SIGUSR1, handle_sigusr1);
+    signal(SIGUSR2, handle_sigusr2);
     while (1)
         ;
 }
