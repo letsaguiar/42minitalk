@@ -3,7 +3,7 @@
 # Compile
 export CC="gcc"
 export CFLAGS="-Wall -Wextra -Werror -g -fsanitize=address"
-export CLIBS="-Llibs -lft"
+export CLIBS="-Llibs -lft -lftprintf"
 export CINCLUDES="-Iincludes"
 
 export SERVER_FILES=$(find server -name "*.c")
