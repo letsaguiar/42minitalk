@@ -2,16 +2,35 @@
 #include <signal.h>
 #include <unistd.h>
 
+static unsigned int counter = 0;
+static char letter = '\0';
+
+static void addCounter()
+{
+    if (counter == 7)
+    {
+        ft_printf("%c", letter);
+        counter = 0;
+
+        if (letter == '\0')
+            ft_printf("\n");
+        letter = '\0';
+    }
+    else
+        counter++;
+}
+
 static void handle_sigusr1(int sig)
 {
     (void)sig;
-    ft_printf("SIGUSR1 received\n");
+    letter |= (1 << counter);
+    addCounter();
 }
 
 static void handle_sigusr2(int sig)
 {
     (void)sig;
-    ft_printf("SIGUSR2 received\n");
+    addCounter();
 }
 
 int main(void)

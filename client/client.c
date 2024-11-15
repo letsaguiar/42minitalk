@@ -5,8 +5,10 @@
 
 static void send_message(int server_pid, t_string message)
 {
+    int size = ft_strlen(message);
+
     int i = 0;
-    while (message[i])
+    while (i <= size)
     {
         int j = 0;
         while (j < 8)
